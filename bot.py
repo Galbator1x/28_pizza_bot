@@ -1,14 +1,13 @@
+import config
+from menu import catalog
+
 import telebot
 from jinja2 import Template
-from os import getenv
 
-from models import catalog
-
-TOKEN = getenv('BOT_TOKEN')
-if not TOKEN:
+if not config.BOT_TOKEN:
     raise Exception('BOT_TOKEN should be specified')
 
-bot = telebot.TeleBot(TOKEN)
+bot = telebot.TeleBot(config.BOT_TOKEN)
 
 with open('templates/catalog.md', 'r') as catalog_file:
     catalog_tmpl = Template(catalog_file.read())
@@ -23,6 +22,7 @@ def greet(message):
 @bot.message_handler(commands=['menu'])
 def show_catalog(message):
     bot.send_message(message.chat.id, catalog_tmpl.render(catalog=catalog), parse_mode='Markdown')
+
 
 if __name__ == '__main__':
     bot.polling(none_stop=True)
