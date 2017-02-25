@@ -1,23 +1,27 @@
-from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy import Column, Integer, String, Text, ForeignKey
+from sqlalchemy.orm import relationship
+from sqlalchemy.ext.declarative import declarative_base
 
-db = SQLAlchemy()
+Base = declarative_base()
 
 
-class Pizza(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    title = db.Column(db.String(255), unique=True)
-    description = db.Column(db.Text)
+class Pizza(Base):
+    __tablename__ = 'pizza'
+    id = Column(Integer, primary_key=True)
+    title = Column(String(255), unique=True)
+    description = Column(Text)
 
     def __str__(self):
         return self.title
 
 
-class PizzaChoices(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    title = db.Column(db.String(255))
-    price = db.Column(db.Integer)
-    pizza = db.relationship('Pizza', backref='choices')
-    pizza_id = db.Column(db.Integer, db.ForeignKey(Pizza.id))
+class PizzaChoices(Base):
+    __tablename__ = 'pizza_choices'
+    id = Column(Integer, primary_key=True)
+    title = Column(String(255))
+    price = Column(Integer)
+    pizza = relationship('Pizza', backref='choices')
+    pizza_id = Column(Integer, ForeignKey(Pizza.id))
 
     def __str__(self):
         return '{} - {}'.format(self.title, self.price)

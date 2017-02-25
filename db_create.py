@@ -1,5 +1,4 @@
-from server import app, db
+from models import Base
+from server import engine
 
-with app.app_context():
-    db.drop_all() # FIXME DEBUG ONLY!!!!!!!!!
-    db.create_all()
+Base.metadata.create_all(engine)
