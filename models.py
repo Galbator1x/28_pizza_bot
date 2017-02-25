@@ -2,10 +2,10 @@ from sqlalchemy import Column, Integer, String, Text, ForeignKey
 from sqlalchemy.orm import relationship
 from sqlalchemy.ext.declarative import declarative_base
 
-Base = declarative_base()
+base = declarative_base()
 
 
-class Pizza(Base):
+class Pizza(base):
     __tablename__ = 'pizza'
     id = Column(Integer, primary_key=True)
     title = Column(String(255), unique=True)
@@ -15,7 +15,7 @@ class Pizza(Base):
         return self.title
 
 
-class PizzaChoices(Base):
+class PizzaChoices(base):
     __tablename__ = 'pizza_choices'
     id = Column(Integer, primary_key=True)
     title = Column(String(255))
