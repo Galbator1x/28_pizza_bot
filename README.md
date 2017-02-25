@@ -1,19 +1,33 @@
 # Telegram Bot for Pizzeria
 
-[TODO. There will be project description]
+This bot prints the pizzeria's menu from db to  telegram chat.
 
-# How to Use
+## Installation
 
-Step 1. Register new telegram bot for development purposes, get the new token. [@BotFather](https://telegram.me/botfather)
-
-Step 2. Launch
-
+- Register new telegram bot for development purposes, get the new token. [@BotFather](https://telegram.me/botfather)
+- Put your token, login and password for admin site into dev.env
 ```
-#!bash
-
-$ # the token below is not actual, you need to register a new one
-$ BOT_TOKEN="110831855:AAE_GbIeVAUwk11O12vq4UeMnl20iADUtM" python3 bot.py
+$ pip install -r requirements.txt
+$ . dev.env
+$ python db_create.py
+$ python load_initial_menu_in_db.py
 ```
+
+## Usage
+
+Run bot:
+```
+$ python bot.py
+```
+Run admin site
+```
+$ python server.py
+```
+
+## Requirements
+
+- Python >= 3.5
+
 # Project Goals
 
 The code is written for educational purposes. Training course for web-developers - [DEVMAN.org](https://devman.org)
