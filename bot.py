@@ -1,5 +1,6 @@
 import config
-from menu import catalog
+from models import Pizza
+from server import session
 
 import telebot
 from jinja2 import Template
@@ -15,13 +16,17 @@ with open('templates/catalog.md', 'r') as catalog_file:
 with open('templates/greetings.md', 'r') as greetings_file:
     greetings_tmpl = Template(greetings_file.read())
 
+
 @bot.message_handler(commands=['start'])
 def greet(message):
     bot.send_message(message.chat.id, greetings_tmpl.render())
 
+
 @bot.message_handler(commands=['menu'])
 def show_catalog(message):
-    bot.send_message(message.chat.id, catalog_tmpl.render(catalog=catalog), parse_mode='Markdown')
+    bot.send_message(message.chat.id,
+                     catalog_tmpl.render(catalog=session.query(Pizza).all()),
+                     parse_mode='Markdown')
 
 
 if __name__ == '__main__':
