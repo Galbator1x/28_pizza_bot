@@ -9,12 +9,12 @@ def load_menu_in_db(catalog):
         pizza.title = item.get('title')
         pizza.description = item.get('description')
         session.add(pizza)
-        for size in item.get('choices', []):
-            p_size = PizzaChoices()
-            p_size.pizza = pizza
-            p_size.title = size.get('title')
-            p_size.price = size.get('price')
-            session.add(p_size)
+        for choice in item.get('choices', []):
+            p_choice = PizzaChoices()
+            p_choice.pizza = pizza
+            p_choice.title = choice.get('title')
+            p_choice.price = choice.get('price')
+            session.add(p_choice)
     session.commit()
 
 
