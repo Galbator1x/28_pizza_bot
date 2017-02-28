@@ -1,14 +1,13 @@
-from models import Pizza, PizzaChoices
-
 import os
 
-from flask import Flask, abort, request, Response, redirect
+from flask import Flask, Response, request
 from flask_admin import Admin
 from flask_admin.contrib.sqla import ModelView
-from werkzeug.exceptions import HTTPException
 from sqlalchemy import create_engine
 from sqlalchemy.orm import Session
+from werkzeug.exceptions import HTTPException
 
+from models import Pizza, PizzaChoices
 
 app = Flask(__name__)
 app.config.from_object('config')
@@ -24,7 +23,7 @@ def check_auth(username, password):
 class AuthException(HTTPException):
     def __init__(self, message):
         super().__init__(message, Response(
-            "You could not be authenticated. Please refresh the page.", 401,
+            'You could not be authenticated. Please refresh the page.', 401,
             {'WWW-Authenticate': 'Basic realm="Login Required"'}
         ))
 
@@ -43,5 +42,5 @@ admin = Admin(app, name='menu', template_mode='bootstrap3')
 admin.add_view(PizzaModelView(Pizza, session))
 
 
-if __name__  ==  '__main__':
+if __name__ == '__main__':
     app.run()

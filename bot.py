@@ -1,9 +1,9 @@
+import telebot
+from jinja2 import Template
+
 import config
 from models import Pizza
 from server import session
-
-import telebot
-from jinja2 import Template
 
 if not config.BOT_TOKEN:
     raise Exception('BOT_TOKEN should be specified')
