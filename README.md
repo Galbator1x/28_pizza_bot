@@ -15,14 +15,15 @@ $ python load_initial_menu_in_db.py
 
 ## Usage
 
-Run bot:
+##### Run bot:
 ```
 $ python bot.py
 ```
-Run admin site
+##### Run admin site
 ```
 $ python server.py
 ```
+go to 127.0.0.1:5000/admin/
 
 ## Requirements
 
