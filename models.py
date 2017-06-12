@@ -20,7 +20,7 @@ class PizzaChoices(Base):
     id = Column(Integer, primary_key=True)
     title = Column(String(255))
     price = Column(Integer)
-    pizza = relationship('Pizza', backref='choices')
+    pizza = relationship('Pizza', backref='choices', lazy='select')
     pizza_id = Column(Integer, ForeignKey(Pizza.id))
 
     def __str__(self):
