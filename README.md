@@ -23,7 +23,7 @@ $ python bot.py
 ```
 $ python server.py
 ```
-go to 127.0.0.1:5000/admin/
+go to [/admin](http://127.0.0.1:5000/admin/)
 
 ## Requirements
 
