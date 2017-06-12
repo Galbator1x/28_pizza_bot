@@ -11,8 +11,8 @@ from models import Pizza, PizzaChoices
 
 app = Flask(__name__)
 app.config.from_object('config')
-app.secret_key = os.urandom(24)
-engine = create_engine(app.config['SQLALCHEMY_DATABASE_URI'])
+app.secret_key = app.config['SECRET_KEY']
+engine = create_engine(app.config['DB_URI'])
 session = Session(engine)
 
 
